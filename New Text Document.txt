@@ -1,0 +1,54 @@
+
+created namespace
+travelns
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: travel-ns
+
+kubectl apply -f namespace.yaml
+
+kubectl get ns
+
+------------------------
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: travel-config
+  namespace: travel-ns
+data:
+  APP_ENV: "dev"
+  APP_NAME: "TravelApp"
+
+kubectl apply -f configmap.yaml
+
+
+
+kubectl get configmap travel-config -n travel-ns
+
+==============
+
+
+kubectl get pods -n travel-ns
+kubectl describe deployment travel-app -n travel-ingress
+kubectl apply -f deployment.yaml -n travel-ns
+kubectl edit deployment travel-app -n travel-ns
+kubectl logs <pod-name> -n travel-ingress
+
+=====================
+
+svc
+
+kubectl apply -f service.yaml
+kubectl get svc -n travel-ns
+
+
+127.0.0.1 travel.local
+
+kubectl set image deployment/travel-app \
+travel-container=sam3583558/travel:2.0 \
+-n travel-ingress
+
+kubectl port-forward svc/travel-service 8080:80 -n travel-ns
+kubectl get endpoints travel-service -n travel-ns

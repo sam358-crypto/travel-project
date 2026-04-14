@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: travel-app
+  namespace: travel-ns
+spec:
+  replicas: 2
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
+  selector:
+    matchLabels:
+      app: travel-app
+
+  template:
+    metadata:
+      labels:
+        app: travel-app
+    spec:
+      containers:
+      - name: travel-container
+        image: sam3583558/travel
+        ports:
+        - containerPort: 80

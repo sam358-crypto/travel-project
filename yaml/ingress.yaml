@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: travel-ingress
+  namespace: travel-ns
+spec:
+  rules:
+  - host: travel.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: travel-service
+            port:
+              number: 5050
