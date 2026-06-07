@@ -23,6 +23,6 @@ spec:
     spec:
       containers:
       - name: travel-container
-        image: sam3583558/travel:2.0
+        image: sam3583558/travel
         ports:
         - containerPort: 80
