@@ -4,7 +4,7 @@ metadata:
   name: travel-app
   namespace: travel-ns
 spec:
-  replicas: 0
+  replicas: 3
 
   strategy:
     type: RollingUpdate
